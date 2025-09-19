@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+
+    triggers {
+        pollSCM('H/5 * * * *')
+    }
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Task: Compile and package the React web application'
+                echo 'Tool: Node.js Yarn'
+            }
+        }
+
+        stage('Unit and Integration Tests') {
+            steps {
+                echo 'Task: Run unit tests for backend logic and integration tests for the website'
+                echo 'Tool: Mocha (JavaScript unit tests), Selenium (browser-based integration tests)'
+            }
+        }
+
+        stage('Code Analysis') {
+            steps {
+                echo 'Task: Static code quality and style analysis'
+                echo 'Tool: SonarQube Scanner'
+            }
+        }
+
+        stage('Security Scan') {
+            steps {
+                echo 'Task: Dependency and source vulnerability scan'
+                echo 'Tool: Snyk CLI'
+            }
+        }
+        
+        stage('Deploy to Staging') {
+            steps {
+                echo 'Task: Promote and deploy the artefact to Non-Prod/Staging in Azure'
+                echo 'Tool: Azure CLI with Docker'
+            }
+        }
+
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Task: End-to-end regression against staging'
+                echo 'Tool: Selenium WebDriver'
+            }
+        }
+
+        stage('Deploy to Production') {
+            steps {
+                echo 'Task: Promote and deploy the same artefact to production in Azure'
+                echo 'Tool: Azure CLI with Docker'
+            }
+        }
+    }
+}
