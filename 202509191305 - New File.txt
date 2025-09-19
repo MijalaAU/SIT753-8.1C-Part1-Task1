@@ -5,4 +5,4 @@ Thank you!
 
 --- Generate Commit Example ---
 Commit Message: Add new file for pipeline demonstration
-Author: Michael Lamb <
+Author: Michael Lamb
